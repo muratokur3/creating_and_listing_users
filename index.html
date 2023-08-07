@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1 id="head-javascript"></h1>
+    </header>
+
+    <main>
+        <div id="adduser">
+            <input type="text" id="firstname" placeholder="First Name">
+            <input type="text" id="lastname" placeholder="Last Name">
+            <input type="text" id="job" placeholder="Job">
+
+            <input type="date" id="datebirth" placeholder="Date Of Birth">
+            <select id="city" aria-placeholder="City">
+                <option value="istanbul">İstanbul</option>
+                <option value="izmir">İzmir</option>
+                <option value="ankara">Ankara</option>
+                <option value="bursa">Bursa</option>
+            </select>
+            <button onclick="AddUser()">Add User</button>
+        </div>
+        <div id="userlist">
+
+
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script>
+        document.getElementById("head-javascript").innerHTML += "Javascript Topics";
+        // document.write("\"Hello World\"")
+        let kullaniciSayisi = 0;
+        let users = [];
+        let renkler = ["green", "blue", "darkturquoise", "gray", "purple", "darkorange", "yellowgreen", "aqua", "gold"]
+        let randomRenk;
+        let randomResimNo;
+
+        function AddUser() {
+            let firstname = document.getElementById("firstname").value;
+            let lastname = document.getElementById("lastname").value;
+            let job = document.getElementById("job").value;
+            let datebirth = document.getElementById("datebirth").value;
+            let city = document.getElementById("city").value;
+            if (firstname != "" && lastname != "" && job != "") {
+                kullaniciSayisi++;
+                for (let i = kullaniciSayisi - 1; i < kullaniciSayisi; i++) {
+                    users[i] = [];
+                    users[i][0] = firstname;
+                    users[i][1] = lastname;
+                    users[i][2] = job;
+                    users[i][3] = city;
+                    users[i][4] = datebirth;
+                }
+                showUser();
+                document.getElementById("firstname").value="";
+                document.getElementById("lastname").value="";
+                document.getElementById("job").value="";
+                document.getElementById("datebirth").value=null;
+            }
+            else alert("lütfen tüm alanları doldurunuz")
+
+        }
+
+        function showUser() {
+
+            for (let i = kullaniciSayisi - 1; i < kullaniciSayisi; i++) {
+
+                let usercard = document.createElement("div");//her bir kullanıcı için usercard adında div oluştur
+                usercard.classList = "usercard";//usercard classını ekle
+                usercard.setAttribute("id", "usercard" + i);//usercard+kullanıcı sırasını ve bilgi sıra numarasını id olarak ekle
+                document.getElementById("userlist").appendChild(usercard);//userlist id'li divin içeriğine usercard divini ekle
+
+                let userPicture = document.createElement("img");
+                userPicture.classList = "userPicture";
+                userPicture.setAttribute("id", i);
+                usercard.appendChild(userPicture);
+
+
+
+                let username = document.createElement("h1");// kullanıcı ismi için username adında h1 oluştur
+                username.classList = "username";//username clasını ver
+                username.setAttribute("id", i)//username+kullanıcı sırasını ve bilgi sıra numarasını id  olarak ekle
+                usercard.appendChild(username);//username adındaki h1 etiketini usercard divinin içine ekledik
+
+                let userinfo = document.createElement("p");//userinfo adında bir p elementi oluştur
+                userinfo.classList = "userinfo";//userinfo clasını ver
+                userinfo.setAttribute("id", i);//userinfo+kullanıcı sırasını ve bilgi sıra numarasını id  olarak ekle
+                usercard.appendChild(userinfo);//usercard divine p etiketini ekliyoruz
+                
+                username.innerHTML = (users[i][0]) + " " + (users[i][1]);//h1 içerisine isim ve soyisim yazdır
+                userinfo.innerHTML = `Hello, my name is ${users[i][0]} ${users[i][1]}. I was born in ${users[i][4]}. My profession is ${users[i][2]} and I live in ${users[i][3]}.`;//p etiketi içerisine diğer bilgileri yazdır
+                renkOlustur();
+
+                usercard.style.backgroundColor = randomRenk;
+                userPicture.src = `/javascript/users/img/${Math.floor(Math.random() * 4)}.jpg`;
+            }
+        }
+
+        function renkOlustur() {
+            let randomSayi = Math.floor(Math.random() * 8);
+            randomRenk = renkler[randomSayi];
+        }
+
+        
+
+    </script>
+</body>
+
+</html>

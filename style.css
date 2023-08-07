@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#adduser{
+   top: 0px;;
+   background-color:darkturquoise;
+   width: 50%;
+   height: 35vh;
+   padding: 5%;
+}
+#adduser *{
+font-size: x-large;
+padding: 5px;
+padding-left: 10px;
+margin-top: 2%;
+
+}
+#userlist{
+     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: aliceblue;
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
+    padding: 3%;
+}
+
+.usercard{
+    width: 20%;
+    height: 30%;
+    color: white;
+    padding: 3%;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.userPicture{
+    width: 10rem;
+    height: 15rem;
+    border-radius: 45%;
+    object-fit: cover;
+}
+
+.userinfo{
+    font-family:monospace;
+    font-size: .9rem;
+}
